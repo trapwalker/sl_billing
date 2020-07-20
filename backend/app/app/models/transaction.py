@@ -15,7 +15,8 @@ class Transaction(Base):
     comment = Column(String, index=True)
     value = Column(DECIMAL, default=0, nullable=False)
 
-    src_wallet_id = Column(Integer, ForeignKey("wallet.id"))
-    dst_wallet_id = Column(Integer, ForeignKey("wallet.id"))
+    src_wallet_id = Column(Integer, ForeignKey("src_wallet.id"))
+    dst_wallet_id = Column(Integer, ForeignKey("dst_wallet.id"))
+
     src_wallet = relationship("Wallet", back_populates="tx_transactions")
     dst_wallet = relationship("Wallet", back_populates="rx_transactions")
